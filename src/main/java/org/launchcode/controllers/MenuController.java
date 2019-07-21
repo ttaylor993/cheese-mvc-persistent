@@ -1,13 +1,12 @@
 package org.launchcode.controllers;
 
 
-import org.launchcode.forms.AddMenuItemForm;
+import org.launchcode.models.forms.AddMenuItemForm;
 import org.launchcode.models.Cheese;
 import org.launchcode.models.Menu;
 import org.launchcode.models.data.CheeseDao;
 import org.launchcode.models.data.MenuDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -46,10 +45,11 @@ public class MenuController {
     public String add(Model model, @ModelAttribute @Valid Menu menu, Errors errors) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Menus");
+            model.addAttribute("title", "Add Menu");
             return "menu/add";
         }
         menuDao.save(menu);
+
         return "redirect:view/" + menu.getId();
     }
 
@@ -72,12 +72,12 @@ public class MenuController {
         AddMenuItemForm form = new AddMenuItemForm(
                 cheeseDao.findAll(), menu);
 
-        model.addAttribute("title", "Add item to menu" + menu.getName());
+        model.addAttribute("title", "Add item to " + menu.getName());
         model.addAttribute("form", form);
-        return "menu.add=item";
+        return "menu/add-item";
     }
 
-    @RequestMapping(value = "add=item", method = RequestMethod.POST)
+    @RequestMapping(value = "add-item", method = RequestMethod.POST)
     public String addItem(Model model, @ModelAttribute @Valid AddMenuItemForm form, Errors errors) {
 
         if (errors.hasErrors()) {
@@ -90,7 +90,7 @@ public class MenuController {
         theMenu.addItem(theCheese);
         menuDao.save(theMenu);
 
-        return "redirecct/menu/view" + theMenu.getId();
+        return "redirect:/menu/view/"; //+ theMenu.getId();
 
     }
 }

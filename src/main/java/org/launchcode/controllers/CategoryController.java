@@ -26,7 +26,6 @@ public class CategoryController {
     private CategoryDao categoryDao;
 
 
-
     // Request path: /category
     @RequestMapping(value = "")
     public String index(Model model) {

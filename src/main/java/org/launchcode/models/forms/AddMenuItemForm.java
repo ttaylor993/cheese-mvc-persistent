@@ -1,4 +1,4 @@
-package org.launchcode.forms;
+package org.launchcode.models.forms;
 
 import org.launchcode.models.Cheese;
 import org.launchcode.models.Menu;
@@ -17,7 +17,7 @@ public class AddMenuItemForm {
 
     private Menu menu;
 
-    public AddMenuItemForm() {};
+    public AddMenuItemForm() {}
 
     public AddMenuItemForm(Iterable<Cheese> cheeses, Menu menu) {
         this.cheeses = cheeses;
@@ -40,9 +40,7 @@ public class AddMenuItemForm {
         this.cheeseId = cheeseId;
     }
 
-    public Iterable<Cheese> getCheeses() {
-        return cheeses;
-    }
+    public Iterable<Cheese> getCheeses() { return cheeses; }
 
     public Menu getMenu() {
         return menu;
