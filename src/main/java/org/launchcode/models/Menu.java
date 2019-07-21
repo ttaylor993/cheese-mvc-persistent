@@ -21,6 +21,8 @@ public class Menu {
     @ManyToMany
     private List<Cheese> cheeses = new ArrayList<>();
 
+    public Menu() { };
+
     public void addItem(Cheese item){};
 
     public int getId() {
